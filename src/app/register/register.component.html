@@ -1,0 +1,76 @@
+
+
+
+<main class="form-signin w-100 m-auto">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <h1 class="h3 mb-3 fw-normal">Boş Xanalari Doldurun</h1>
+ 
+    
+    <div class="form-floating">
+      <input  id="name" formControlName="name" type="text" class="form-control" id="floatingname" placeholder="Ad">
+      <label for="floatingname">Ad</label>
+    </div>
+ <div *ngIf="registered['name'].getError('required')!=null && this.registerForm.get('name')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+
+    <div class="form-floating">
+      <input  id="lastName" formControlName="lastName" type="text" class="form-control" id="floatinglastName" placeholder="Soyad">
+      <label for="floatinglastName">Soyad</label>
+    </div>
+ <div *ngIf="registered['lastName'].getError('required')!=null && this.registerForm.get('lastName')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+
+    <div class="form-floating">
+      <input (keyup)="MustNumberPhone($event)"  id="phoneNumber" formControlName="phoneNumber" type="text" class="form-control" id="Telefon Nömresi" placeholder="name">
+      <label  for="floatingname">Telefon Nömresi</label>
+    </div>
+    <span *ngIf="registerForm.getError('mustNumber')!=null && phoneNumber!='' " class="alert alert-danger">Rakam deildir,Rakam girin</span>
+     <div  *ngIf="registerForm.getError('mustbeOperator')!=null && startNumber!='' " class="alert alert-danger" role="alert">
+      Dogru operator yazin
+    </div>
+    <div *ngIf="registered['phoneNumber'].getError('minlength')!=null ||registered['phoneNumber'].getError('maxlength')!=null && this.registerForm.get('phoneNumber')?.dirty " class="alert alert-danger" role="alert">
+     Numara uzunlugu dogru deil
+    </div>
+   
+ <div *ngIf="registered['phoneNumber'].getError('required')!=null && this.registerForm.get('phoneNumber')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+ 
+    <div class="form-floating">
+      <input   id="email" formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
+      <label for="floatingInput">Email addressi</label>
+    </div>
+    <div *ngIf="registered['email'].getError('required')!=null && this.registerForm.get('email')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+    <div *ngIf="registered['email'].getError('email')!=null" class="alert alert-danger" role="alert">
+      emailinizi dogru deyil
+    </div>
+    <div class="form-floating">
+      <input  id="password" formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Parol">
+      <label for="floatingPassword">Parol</label>
+    </div>
+ <div *ngIf="registered['password'].getError('required')!=null && this.registerForm.get('password')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+    <div *ngIf="registered['password'].getError('minlength')!=null" class="alert alert-danger" role="alert">
+      en az 7 karakter giriniz
+    </div>
+
+
+
+
+
+   
+    <button class="btn btn-primary w-100 py-2" type="submit"  [disabled]="!registerForm.valid">Qeydiyyat</button>
+   
+    
+  </form><br>
+
+ 
+
+  
+</main>
+

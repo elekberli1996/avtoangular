@@ -1,0 +1,109 @@
+<br>  
+<div  style="border: 2px solid rgb(66, 224, 26); border-radius: 10px;" class="container-fluid">
+  <br>  
+
+  <div class="container"  >
+  <p style="text-align: center; color: aqua; font-size: 40px;">Axtariş</p> 
+  <button style="height: 40px ; width: 150px;" class="btn btn-outline-success" (click)="temizle()">  temizle  </button>
+  </div>
+  <div class="row">
+
+    <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+      <span> Marka</span> 
+      <select  id="categoryName" formControlName="categoryName" style="width: 100%;" class='select-option form-control '
+    #mySelect
+    (change)='onOptionsSelected(mySelect.value)'>
+    
+    <option class='option' 
+    *ngFor='let category of categories' 
+    [value]="category.categoryName"> {{category.categoryName}}  </option>
+
+    </select>
+  
+    </div>
+    <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+
+      <span>Model   </span> 
+      <select  id="modelName" formControlName="modelName" style="width: 100%;" class='select-option form-control '
+      #mySelect2
+      (change)='onOptionsSelected2(mySelect2.value)'>
+    
+     <option class='option ' 
+     *ngFor='let model of selectedModels' 
+     [value]="model"> {{model}}</option>
+    </select>
+    
+    </div>
+    <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+
+      
+     <span>Minimum Qiymət  </span>
+     <input (keyup)="onKey($event)" class=" form-control" style="width: 100%;">
+
+    </div>
+    <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+
+      <span>Maksimum Qiymət   </span>
+      <input (keyup)="onKey1($event)" class=" form-control" style="width: 100%;">
+
+    </div>
+
+    <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+
+      
+      <span>Minimum İl </span>
+      <input (keyup)="onKey2($event)" class=" form-control" style="width: 100%;">
+ 
+     </div>
+
+     <div class="col-12 col-sm-6   col-md-4 col-lg-2">
+
+      
+      <span>Maksimum İl   </span>
+      <input (keyup)="onKey3($event)" class=" form-control" style="width: 100%;">
+ 
+     </div>
+
+  </div>
+ <br>
+</div>
+<hr>
+<p style="text-align: center; color: aqua; font-size: 30px;">Butun Elanlar</p> 
+<h6 *ngIf="!orderedCars" style="text-align: center; color: rgb(255, 81, 0); font-size: 30px;">sonuc yok </h6> 
+
+<div class="container-fluid">
+
+   <div class="row ">
+
+
+  <div  *ngFor="let car of orderedCars | categoryFilter:categoryName |modelFilter:modelName  |  minPrice:minPrice
+   |maxPriceFilter:maxPrice | minYearFilter:minYil | maxYearFilter:maxYil" class=" col-12 col-sm-6   col-md-4 col-lg-3  ">
+
+  <div class="card shadow-sm p-3 m-3 " style="height: 500px; width: 95%;">
+    <div style="height: 400px; width: 95%;">
+      <img src="{{car.photoUrl}}"      alt="">
+    </div>
+   
+       <div class="card-body  ">
+        <p style=" text-align: center; word-spacing: 5px;">{{car.price}}AZN </p>
+       
+      <p style=" text-align: center;  word-spacing: 5px;">{{car.categoryName}}  {{car.modelName}}  </p>
+      <p style=" text-align: center;  word-spacing: 5px;">{{car.year}}, {{car.engine}}l, {{car.totalWay}}km  </p>
+
+      <p style=" text-align: center;  word-spacing: 5px;">{{car.city}}, {{car.addedData}} </p>
+   
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group container">
+          
+          <button type="button"  routerLink="/carDetail/{{car.carId}}" class="btn btn-sm btn-outline-success  ">Etrafli melumat</button>
+        </div>
+      
+      </div>
+
+  </div>
+  </div>
+</div>
+</div>
+</div>
+
+

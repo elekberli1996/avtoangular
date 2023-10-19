@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <p>Marka ekle</p>
+     <form [formGroup]="categoryAddForm" (ngSubmit)="add()">
+
+      <span>Marka   </span>          
+      <div class="form-group">    
+          <input type="text" id="categoryName" placeholder="categoryName" formControlName="categoryName" class='form-control'>
+      </div>
+
+      Taninmis marka <input type="checkbox" id="famous"  formControlName="famous" name="famous" value="famous" >
+      <br>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!categoryAddForm.valid">Add</button>
+ 
+     </form>
+    </div>
+    <div class="col-6">
+    <p>Model ekle</p> 
+     <br>
+     <form  [formGroup]="modelAddForm"  (ngSubmit)="add2()">
+
+      <span>Hangi markanin modeli eklenecek?</span> 
+  <select  id="categoryName" formControlName="categoryName" class='select-option form-control'
+#mySelect
+(change)='onOptionsSelected(mySelect.value)'>
+
+<option class='option' 
+*ngFor='let category of categories' 
+[value]="category.categoryName"> {{category.categoryName}}</option>
+</select>
+
+<span>Modeli   </span>          
+<div class="form-group">    
+    <input type="text" id="modelName" placeholder="modelName" formControlName="modelName" class='form-control'>
+</div>
+
+
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!modelAddForm.valid" >Add</button>
+     </form>
+     
+    </div>
+  </div>
+</div>
+
+<ag-grid-angular 
+style="width: 100%; height: 200px;"
+class= "ag-theme-blue"
+(rowClicked)='onRowClicked($event)'
+[columnDefs]="columnDefs"
+[rowHeight]="30"
+(gridReady)="onGridReady($event)"
+></ag-grid-angular>
+
+<form [formGroup]="deleteForm" (ngSubmit)="delete()" >
+
+  <p>Silinecek elanin Id sini secin </p>
+  <input [(ngModel)]=carId type="text" id="carId" placeholder="carId" formControlName="carId" >
+  <input [(ngModel)]=categoryName type="text" id="categoryName" placeholder="categoryName" formControlName="categoryName" >
+  <input [(ngModel)]=modelName type="text" id="modelName" placeholder="modelName" formControlName="modelName" >
+  <input [(ngModel)]=price type="text" id="price" placeholder="price" formControlName="price" >
+  <input [(ngModel)]=year type="text" id="year" placeholder="year" formControlName="year" >
+  <input [(ngModel)]=totalway type="text" id="totalWay" placeholder="totalWay" formControlName="totalWay" >
+  <input [(ngModel)]=color type="text" id="color" placeholder="color" formControlName="color" >
+  <input [(ngModel)]=city type="text" id="city" placeholder="city" formControlName="city" >
+  <input [(ngModel)]=type type="text" id="type" placeholder="type" formControlName="type" >
+  <input [(ngModel)]=otherNotes type="text" id="otherNotes" placeholder="otherNotes" formControlName="otherNotes" >
+  <input [(ngModel)]=engine type="text" id="engine" placeholder="engine" formControlName="engine" >
+  <input [(ngModel)]=enginePower type="text" id="enginePower" placeholder="enginePower" formControlName="enginePower" >
+  
+  <input [(ngModel)]=transmittor type="text" id="transmittor" placeholder="transmittor" formControlName="transmittor" >
+  <input [(ngModel)]=phoneNumber type="text" id="phoneNumber" placeholder="phoneNumber" formControlName="phoneNumber" >
+  
+  <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!deleteForm.valid" >Sil</button>
+
+  
+
+</form>
+<button (click)="update()" class="btn btn-lg btn-primary btn-block" [disabled]="!deleteForm.valid" >Update</button>

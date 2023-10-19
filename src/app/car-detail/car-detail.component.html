@@ -1,0 +1,40 @@
+
+
+<div class="container-fluid">
+<div class="row"> 
+
+
+
+
+<div class="col-md-9" >
+    
+    <ngx-gallery *ngIf="galleryImages" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+  
+ </div>
+ 
+
+<div  *ngFor="let c of car"    class="col-md-3 p-5" >
+    <p style="word-spacing: 5px;">Marka:  {{c.categoryName}}</p>
+    <p style="word-spacing: 5px;">Model: {{c.modelName}}</p>
+    <p style="word-spacing: 5px;">Qiymət: {{c.price}}</p>
+    <p style="word-spacing: 5px;">Yürüş: {{c.totalWay}}</p>
+    <p style="word-spacing: 5px;">İl: {{c.year}}</p>
+    <p style="word-spacing: 5px;">Rəng: {{c.color}}</p>
+    <p style="word-spacing: 5px;">Səhər: {{c.city}}</p>
+    <p style="word-spacing: 5px;">Tip: {{c.type}}</p>
+    <p style="word-spacing: 5px;">Elavə Qeydlər: {{c.otherNotes}}</p>
+    <p style="word-spacing: 5px;">Mator: {{c.engine}}</p>
+    <p style="word-spacing: 5px;">Sürətlər Qutusu: {{c.transmittor}}</p>
+    <p style="word-spacing: 5px;">Elaqə Nömrəsi: {{c.phoneNumber}}</p>
+
+
+
+ 
+   
+ </div>
+
+</div>
+
+</div>
+
+

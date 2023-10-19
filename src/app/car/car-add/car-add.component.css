@@ -1,0 +1,15 @@
+img {
+    float: left;
+    width:  20%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.btncenter{  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+   
+ 
+ 
+    }

@@ -1,0 +1,35 @@
+<main class="form-signin w-100 m-auto">
+  <form [formGroup]="loginAddForm" (ngSubmit)="login()">
+    <h1 class="h3 mb-3 fw-normal">Giriş edin</h1>
+    
+ 
+    <div class="form-floating">
+      <input [(ngModel)]="email"  id="email" formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div *ngIf="loginForm['email'].getError('required')!=null && this.loginAddForm.get('email')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+    <div *ngIf="loginForm['email'].getError('email')!=null" class="alert alert-danger" role="alert">
+      emailinizi dogru deyil
+    </div>
+    <div class="form-floating">
+      <input [(ngModel)]="password" id="password" formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+ <div *ngIf="loginForm['password'].getError('required')!=null && this.loginAddForm.get('password')?.dirty" class="alert alert-danger" role="alert">
+      Alan bos olamaz
+    </div>
+    <div *ngIf="loginForm['password'].getError('minlength')!=null" class="alert alert-danger" role="alert">
+      en az 7 karakter giriniz
+    </div>
+   
+    <button class="btn btn-primary w-100 py-2" type="submit"  [disabled]="!loginAddForm.valid">Giriş</button>
+   
+    
+  </form><br>
+
+ 
+  <a class="btn btn-primary w-100 py-2" routerLink="register" routerLinkActive="active">Qeydiyyat</a>
+  <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+</main>

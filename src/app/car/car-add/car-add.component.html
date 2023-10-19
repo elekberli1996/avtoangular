@@ -1,0 +1,130 @@
+
+<div class="main">
+<div class="container-fluid">   
+
+    <div class="row">   
+        <form [formGroup]="carAddForm" (ngSubmit)="add()" class="" >
+            <h2 style="text-align: center;" class="mt-3 pt-3">Yeni Elan</h2>
+            <div class="form-group">    
+ 
+ <span> Bütün Markalar</span> 
+  <select  id="categoryName" formControlName="categoryName" class='select-option form-control'
+#mySelect
+(change)='onOptionsSelected(mySelect.value)'>
+
+<option class='option' 
+*ngFor='let category of categories' 
+[value]="category.categoryName"> {{category.categoryName}}</option>
+</select>
+
+
+  </div>
+  <hr> 
+  <div class="form-group">
+   <span>Bütün Modellər:   </span> 
+    <select  id="modelName" formControlName="modelName" class='select-option form-control'
+    #mySelect2
+    (change)='onOptionsSelected2(mySelect2.value)'>
+ 
+   <option class='option ' 
+   *ngFor='let model of selectedModels' 
+   [value]="model"> {{model}}</option>
+</select>
+
+
+
+  </div>
+  <hr> 
+  <span>Qiymət  </span>          
+<div class="form-group">    
+    <input type="text" (keyup)="MustNumberPrice($event)"   id="price" placeholder="price" formControlName="price" class='form-control'>
+<br>
+    <span *ngIf="carAddForm.getError('mustNumber')!=null && pricevalue!='' " class="alert alert-danger">Numara deildir,Numara girin</span>
+</div>
+<hr>  
+<span>  Şəhər </span>          
+<div class="form-group">    
+    <input type="text" id="city" placeholder="city"  formControlName="city" class='form-control'>
+</div>
+<hr>  
+<span>Buraxılış İli </span>          
+<div class="form-group">    
+    <input type="text"(keyup)="MustNumberYear($event)" id="year" placeholder="year" formControlName="year" class='form-control'>
+  <br>
+    <span *ngIf="carAddForm.getError('mustNumber')!=null && yearvalue!='' " class="alert alert-danger">Numara deildir,Numara girin</span>
+
+</div>
+<hr> 
+<span>  Telefon Nomrəsi </span>          
+<div class="form-group">    
+    <input type="text" (keyup)="MustNumberNumber($event)" id="phoneNumber" placeholder="phoneNumber" formControlName="phoneNumber" class='form-control'>
+    <br>
+    <span *ngIf="carAddForm.getError('mustNumber')!=null && numbervalue!='' " class="alert alert-danger">Numara deildir,Numara girin</span>
+
+</div>
+<hr>
+<span>  Ban Növü </span>          
+<div class="form-group">    
+    <input type="text" id="Type" placeholder="Type"  formControlName="type"  class='form-control'>
+</div>
+<hr> 
+<span>  Rəngi </span>          
+<div class="form-group">    
+    <input type="text" id="Color" placeholder="Color"  formControlName="color" class='form-control'>
+</div>
+<hr> 
+<span>  Maşın haqqinada əlavə qeydlər </span>          
+<div class="form-group">    
+    <input type="text" id="otherNotes" placeholder="otherNotes"  formControlName="otherNotes" class='form-control'>
+</div>
+<hr> 
+<span>  Motor </span>          
+<div class="form-group">    
+    <input type="text" id="engine" placeholder="engine"  formControlName="engine" class='form-control'>
+</div>
+<hr> 
+
+<span>  Yürüş</span>          
+<div class="form-group">    
+    <input type="text" (keyup)="MustNumberWay($event)" id="totalWay" placeholder="totalWay"  formControlName="totalWay" class='form-control'>
+
+    <br>
+    <span *ngIf="carAddForm.getError('mustNumber')!=null && wayvalue!='' " class="alert alert-danger">Numara deildir,Numara girin</span>
+
+</div>
+<hr>  
+<span>  Sürətlər qutusu</span>          
+<div class="form-group">    
+    <input type="text" id="transmittor" placeholder="transmittor"  formControlName="transmittor" class='form-control'>
+</div>
+<hr> 
+ <div>
+<img   *ngFor="let url of urls" [src]="url" alt="">
+<br>
+<input   type="file" multiple value="select" #selectFile
+(change)="FileSelected($event)">
+<a  *ngIf="urls.length>0" class="btn btn-lg btn-primary btn-block" (click)="remove()">Bütün fotografları sil</a>
+</div>
+<br>
+<br>
+<hr> 
+<div class="btn-group btncenter">
+    </div>
+    <button  type="submit" class="btn btn-lg btn-primary btn-block "  [disabled]="!carAddForm.valid">Əlavə Et</button>
+
+       </form>
+    </div>
+</div>
+<br>
+
+</div>
+        
+   
+
+
+
+
+
+
+
+
